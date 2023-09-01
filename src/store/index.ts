@@ -1,5 +1,5 @@
 export * from './store'
-export * from './provider'
+export * from '../app/providers/providerStore'
 export * from './api/postsApi'
 export * from './slices/postsSlice'
 export * from './slices/snackbarSlice'

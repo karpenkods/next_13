@@ -29,8 +29,6 @@ export async function generateMetadata({
 }: Props): Promise<Metadata> {
   const post = await getPost(id)
 
-  console.log(post)
-
   let sliced = post.text.slice(0, 20)
 
   if (sliced.length < post.text.length) sliced += '...'

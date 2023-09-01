@@ -1,15 +1,11 @@
 import React, { ReactNode } from 'react'
-
 import type { Metadata } from 'next'
 import { JetBrains_Mono } from 'next/font/google'
 
-import { ThemeProvider } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
 import { Stack } from '@mui/material'
 
-import { darkTheme } from '@/styles/theme/darkTheme'
 import { Footer, Header, Snackbar } from '@/components'
-import { Providers } from '@/store'
+import { ProviderStore } from './providers'
 
 import '@/styles/global.scss'
 
@@ -35,21 +31,18 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ru">
       <body className={font.className}>
-        <Providers>
-          <ThemeProvider theme={darkTheme}>
-            <CssBaseline />
-            <Snackbar />
-            <Stack
-              direction="column"
-              justifyContent="space-between"
-              minHeight="100vh"
-            >
-              <Header />
-              <Stack>{children}</Stack>
-              <Footer />
-            </Stack>
-          </ThemeProvider>
-        </Providers>
+        <ProviderStore>
+          <Snackbar />
+          <Stack
+            direction="column"
+            justifyContent="space-between"
+            minHeight="100vh"
+          >
+            <Header />
+            <Stack>{children}</Stack>
+            <Footer />
+          </Stack>
+        </ProviderStore>
       </body>
     </html>
   )

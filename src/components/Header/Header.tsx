@@ -3,11 +3,21 @@ import React, { FC } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
-import { Stack } from '@mui/material'
+import { IconButton, Stack } from '@mui/material'
+import LightModeIcon from '@mui/icons-material/LightMode'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
+
+import { useAppDispatch, useAppSelector } from '@/common'
+
 import { useHeaderStyles } from './Header.styles'
+import { themeReducer } from '@/store'
 
 export const Header: FC = () => {
   const pathname = usePathname()
+
+  const dispatch = useAppDispatch()
+
+  const theme = useAppSelector((store) => store.theme.theme)
 
   const classes = useHeaderStyles()
 
@@ -47,6 +57,13 @@ export const Header: FC = () => {
       >
         About
       </Link>
+      <IconButton
+        onClick={() =>
+          dispatch(themeReducer(theme === 'dark' ? 'light' : 'dark'))
+        }
+      >
+        {theme === 'dark' ? <LightModeIcon /> : <DarkModeIcon color="error" />}
+      </IconButton>
     </Stack>
   )
 }
