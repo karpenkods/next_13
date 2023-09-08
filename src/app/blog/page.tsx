@@ -1,13 +1,14 @@
 import React from 'react'
 import { Metadata, NextPage } from 'next'
 import Link from 'next/link'
+import { headers } from 'next/headers'
 
 import { Stack, Typography } from '@mui/material'
 
-async function getPosts() {
+async function getPosts(host: string) {
   // const res = await fetch('http://localhost:3000/api/posts?sort=husky')
 
-  const res = await fetch('/api/posts')
+  const res = await fetch(`https://${host}/api/posts`)
 
   if (!res.ok) throw new Error('Error fetching posts')
 
@@ -20,7 +21,8 @@ export const metadata: Metadata = {
 }
 
 const BlogPage: NextPage = async () => {
-  const { currentPosts: posts } = await getPosts()
+  const host = headers().get('host')
+  const { currentPosts: posts } = await getPosts(host as string)
 
   return (
     <Stack alignItems="center">
