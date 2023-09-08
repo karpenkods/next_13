@@ -7,6 +7,7 @@ export const useHeaderStyles = makeStyles(() =>
       fontWeight: 600,
       fontSize: '20px',
       cursor: 'pointer',
-    },
-  }),
+      color: 'yellowgreen'
+    }
+  })
 )

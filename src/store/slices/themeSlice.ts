@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { IThemeState } from '@/common'
 
 const initialState: IThemeState = {
-  theme: '',
+  theme: ''
 }
 
 const themeSlice = createSlice({
@@ -12,8 +12,8 @@ const themeSlice = createSlice({
   reducers: {
     themeReducer(state, action) {
       state.theme = action.payload
-    },
-  },
+    }
+  }
 })
 
 export const { themeReducer } = themeSlice.actions

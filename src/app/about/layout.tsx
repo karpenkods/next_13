@@ -6,13 +6,20 @@ import { Stack } from '@mui/material'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'About page',
+  description: 'About page'
 }
 
 const AboutLayout = ({ children }: { children: ReactNode }) => {
   return (
     <Stack>
-      <Link href="/about/team">Team</Link>
+      <Link
+        href={{
+          pathname: '/about/team',
+          query: { name: 'test' }
+        }}
+      >
+        Team
+      </Link>
       <Link href="/about/contacts">Contacts</Link>
       {children}
     </Stack>

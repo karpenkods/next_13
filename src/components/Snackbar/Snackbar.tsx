@@ -22,7 +22,7 @@ export const Snackbar: FC = () => {
 
   const removeDisplayed = (id: SnackbarKey) => {
     displayedNotifications.current = [
-      ...displayedNotifications.current.filter((key) => id !== key),
+      ...displayedNotifications.current.filter((key) => id !== key)
     ]
   }
 
@@ -51,7 +51,7 @@ export const Snackbar: FC = () => {
           >
             <CloseIcon sx={{ color: '#fff' }} />
           </IconButton>
-        ),
+        )
       })
 
       storeDisplayed(id)

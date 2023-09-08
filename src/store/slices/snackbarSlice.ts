@@ -15,46 +15,46 @@ const snackbarSlice = createSlice({
 
     removeSnackbar: (state, action: PayloadAction<string | number>) => {
       return state.filter(({ id }) => id !== action.payload)
-    },
-  },
+    }
+  }
 })
 
 export const pushDangerNotification = (
   message: string,
-  isDismissed?: boolean,
+  isDismissed?: boolean
 ) =>
   pushSnackbar({
     id: nanoid(),
     kind: 'error',
     message,
-    isDismissed,
+    isDismissed
   })
 export const pushWarningNotification = (
   message: string,
-  isDismissed?: boolean,
+  isDismissed?: boolean
 ) =>
   pushSnackbar({
     id: nanoid(),
     kind: 'warning',
     message,
-    isDismissed,
+    isDismissed
   })
 export const pushSuccessNotification = (
   message: string,
-  isDismissed?: boolean,
+  isDismissed?: boolean
 ) =>
   pushSnackbar({
     id: nanoid(),
     kind: 'success',
     message,
-    isDismissed,
+    isDismissed
   })
 export const pushInfoNotification = (message: string, isDismissed?: boolean) =>
   pushSnackbar({
     id: nanoid(),
     kind: 'info',
     message,
-    isDismissed,
+    isDismissed
   })
 
 export const { pushSnackbar, removeSnackbar } = snackbarSlice.actions

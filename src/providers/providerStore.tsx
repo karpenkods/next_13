@@ -1,5 +1,6 @@
 'use client'
 import React, { FC, ReactNode } from 'react'
+import { SessionProvider } from 'next-auth/react'
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
 import { SnackbarProvider } from 'notistack'
@@ -15,20 +16,22 @@ interface ProviderStoreProps {
 }
 
 export const ProviderStore: FC<ProviderStoreProps> = ({
-  children,
+  children
 }: {
   children: ReactNode
 }) => {
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ProviderTheme>
-          <SnackbarProvider hideIconVariant TransitionComponent={Zoom}>
-            <NextNProgress color="#d50000" height={2} showOnShallow={true} />
-            {children}
-          </SnackbarProvider>
-        </ProviderTheme>
-      </PersistGate>
-    </Provider>
+    <SessionProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ProviderTheme>
+            <SnackbarProvider hideIconVariant TransitionComponent={Zoom}>
+              <NextNProgress color="#d50000" height={2} showOnShallow={true} />
+              {children}
+            </SnackbarProvider>
+          </ProviderTheme>
+        </PersistGate>
+      </Provider>
+    </SessionProvider>
   )
 }

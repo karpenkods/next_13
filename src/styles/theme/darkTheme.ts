@@ -6,6 +6,6 @@ import { stylesMui } from './common'
 export const darkTheme = createTheme({
   ...stylesMui,
   palette: {
-    mode: 'dark',
-  },
+    mode: 'dark'
+  }
 })

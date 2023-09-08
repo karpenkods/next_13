@@ -4,16 +4,16 @@ import moment from 'moment'
 import 'moment/locale/ru'
 
 import { Stack, Typography } from '@mui/material'
-import Image from 'next/image'
+import { AImage } from '@/common'
 
 async function getPost(id: string) {
   const res = await fetch(`https://dummyapi.io/data/v1/post/${id}`, {
     headers: {
-      'app-id': '6455b2b4bf5df73924396aeb',
+      'app-id': '6455b2b4bf5df73924396aeb'
     },
     next: {
-      revalidate: 60,
-    },
+      revalidate: 60
+    }
   })
   return res.json()
 }
@@ -25,7 +25,7 @@ interface Props {
 }
 
 export async function generateMetadata({
-  params: { id },
+  params: { id }
 }: Props): Promise<Metadata> {
   const post = await getPost(id)
 
@@ -35,7 +35,7 @@ export async function generateMetadata({
 
   return {
     title: sliced,
-    description: post.text,
+    description: post.text
   }
 }
 
@@ -50,7 +50,21 @@ const PostPage: NextPage<Props> = async ({ params: { id } }) => {
       <Typography variant="h1">
         {moment(post.publishDate).format('dddd DD MMM YYYY')}
       </Typography>
-      <Image src={post.image} alt="" width={400} height={300} />
+      <AImage
+        initial={{
+          filter: 'blur(100px)',
+          opacity: 0
+        }}
+        animate={{
+          filter: 'blur(0px)',
+          opacity: 1,
+          transition: { duration: 1 }
+        }}
+        src={post.image}
+        alt=""
+        width={400}
+        height={300}
+      />
     </Stack>
   )
 }

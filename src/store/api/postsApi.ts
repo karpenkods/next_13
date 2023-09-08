@@ -7,7 +7,7 @@ export const postsApi = createApi({
   tagTypes: ['Posts', 'Post'],
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://dummyapi.io/data/v1/',
-    headers: { 'app-id': '6455b2b4bf5df73924396aeb' },
+    headers: { 'app-id': '6455b2b4bf5df73924396aeb' }
   }),
 
   endpoints: (build) => ({
@@ -19,10 +19,10 @@ export const postsApi = createApi({
         url: '/post',
         params: {
           page: page,
-          limit: debounceLimitNumber,
-        },
+          limit: debounceLimitNumber
+        }
       }),
-      providesTags: ['Posts'],
+      providesTags: ['Posts']
     }),
 
     getPostsTags: build.query<
@@ -33,43 +33,43 @@ export const postsApi = createApi({
         url: `/tag/${tagId}/post`,
         params: {
           page: page,
-          limit: debounceLimitNumber,
-        },
+          limit: debounceLimitNumber
+        }
       }),
-      providesTags: ['Posts'],
+      providesTags: ['Posts']
     }),
 
     getPost: build.query<IPost, string>({
       query: (id) => ({ url: `/post/${id}` }),
-      providesTags: ['Post'],
+      providesTags: ['Post']
     }),
 
     createPost: build.mutation<IPost, IPost>({
       query: (body) => ({
         url: '/post/create',
         method: 'POST',
-        body,
+        body
       }),
-      invalidatesTags: () => ['Posts'],
+      invalidatesTags: () => ['Posts']
     }),
 
     updatePost: build.mutation<IPost, IPost>({
       query: ({ id, ...body }) => ({
         url: `/post/${id}`,
         method: 'PUT',
-        body,
+        body
       }),
-      invalidatesTags: () => ['Posts', 'Post'],
+      invalidatesTags: () => ['Posts', 'Post']
     }),
 
     removePost: build.mutation<IPost, string>({
       query: (id) => ({
         url: `/post/${id}`,
-        method: 'DELETE',
+        method: 'DELETE'
       }),
-      invalidatesTags: () => ['Posts'],
-    }),
-  }),
+      invalidatesTags: () => ['Posts']
+    })
+  })
 })
 
 export const {
@@ -79,5 +79,5 @@ export const {
   useGetPostQuery,
   useUpdatePostMutation,
   useCreatePostMutation,
-  useRemovePostMutation,
+  useRemovePostMutation
 } = postsApi

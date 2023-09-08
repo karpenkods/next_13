@@ -14,7 +14,7 @@ interface ProviderThemeProps {
 }
 
 export const ProviderTheme: FC<ProviderThemeProps> = ({
-  children,
+  children
 }: {
   children: ReactNode
 }) => {

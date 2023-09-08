@@ -2,11 +2,11 @@ export const stylesMui = {
   typography: {
     h1: {
       margin: 20,
-      fontSize: 56,
+      fontSize: 56
     },
     h2: {
-      margin: 0,
-    },
+      margin: 0
+    }
   },
   breakpoints: {
     values: {
@@ -16,7 +16,7 @@ export const stylesMui = {
       1000: 1000,
       sm: 768,
       500: 500,
-      xs: 0,
-    },
-  },
+      xs: 0
+    }
+  }
 }

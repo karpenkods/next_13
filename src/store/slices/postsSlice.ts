@@ -4,7 +4,7 @@ import { IPostsState } from '@/common'
 
 const initialState: IPostsState = {
   postId: '',
-  limit: 12,
+  limit: 12
 }
 
 const postsSlice = createSlice({
@@ -16,8 +16,8 @@ const postsSlice = createSlice({
     },
     limitReducer(state, action) {
       state.limit = action.payload
-    },
-  },
+    }
+  }
 })
 
 export const { postIdReducer, limitReducer } = postsSlice.actions

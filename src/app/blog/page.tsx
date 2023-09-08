@@ -5,14 +5,9 @@ import Link from 'next/link'
 import { Stack, Typography } from '@mui/material'
 
 async function getPosts() {
-  const res = await fetch('https://dummyapi.io/data/v1/post', {
-    headers: {
-      'app-id': '6455b2b4bf5df73924396aeb',
-    },
-    next: {
-      revalidate: 60,
-    },
-  })
+  // const res = await fetch('http://localhost:3000/api/posts?sort=husky')
+
+  const res = await fetch('http://localhost:3000/api/posts')
 
   if (!res.ok) throw new Error('Error fetching posts')
 
@@ -21,16 +16,16 @@ async function getPosts() {
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Blog page',
+  description: 'Blog page'
 }
 
 const BlogPage: NextPage = async () => {
-  const posts = await getPosts()
+  const { currentPosts: posts } = await getPosts()
 
   return (
     <Stack alignItems="center">
       <Typography variant="h1">Blog</Typography>
-      {posts.data.map((post: any) => (
+      {posts.map((post: any) => (
         <Stack key={post.id}>
           <Link href={`/blog/${post.id}`}>{post.text}</Link>
         </Stack>

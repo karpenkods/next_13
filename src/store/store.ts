@@ -8,7 +8,7 @@ import {
   PAUSE,
   PERSIST,
   PURGE,
-  REGISTER,
+  REGISTER
 } from 'redux-persist'
 
 import { postsApi } from './api/postsApi'
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
   [postsApi.reducerPath]: postsApi.reducer,
   posts: postsReducer,
   snackbar: snackbarReducer,
-  theme: themeAppReducer,
+  theme: themeAppReducer
 })
 
 const createNoopStorage = () => {
@@ -34,7 +34,7 @@ const createNoopStorage = () => {
     },
     removeItem(_key: string) {
       return Promise.resolve()
-    },
+    }
   }
 }
 
@@ -47,7 +47,7 @@ const persistConfig = {
   key: 'root',
   storage,
   blacklist: [postsApi.reducerPath],
-  whitelist: ['theme'],
+  whitelist: ['theme']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -57,9 +57,9 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }).concat(postsApi.middleware),
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+      }
+    }).concat(postsApi.middleware)
 })
 
 export const persistor = persistStore(store)
