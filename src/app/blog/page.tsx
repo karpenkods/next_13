@@ -7,7 +7,7 @@ import { Stack, Typography } from '@mui/material'
 async function getPosts() {
   // const res = await fetch('http://localhost:3000/api/posts?sort=husky')
 
-  const res = await fetch('https://next-13-ten.vercel.app/api/posts')
+  const res = await fetch('/api/posts')
 
   if (!res.ok) throw new Error('Error fetching posts')
 
