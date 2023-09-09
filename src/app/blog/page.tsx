@@ -8,7 +8,11 @@ import { Stack, Typography } from '@mui/material'
 async function getPosts(host: string) {
   // const res = await fetch('http://localhost:3000/api/posts?sort=husky')
 
-  const res = await fetch(`https://${host}/api/posts`)
+  const res = await fetch(
+    `${
+      process.env.NODE_ENV === 'development' ? 'http' : 'https'
+    }://${host}/api/posts`
+  )
 
   if (!res.ok) throw new Error('Error fetching posts')
 
